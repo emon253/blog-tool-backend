@@ -7,5 +7,4 @@ import com.yasin.blogapp.entity.BlogPost;
 
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long> {
-    // Additional custom query methods (if needed) can be defined here
 }

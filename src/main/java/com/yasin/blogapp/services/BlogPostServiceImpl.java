@@ -3,6 +3,7 @@ package com.yasin.blogapp.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yasin.blogapp.entity.BlogPost;
@@ -13,6 +14,7 @@ import com.yasin.blogapp.repositories.BlogPostRepository;
 import com.yasin.blogapp.repositories.CategoryRepository;
 import com.yasin.blogapp.repositories.UserRepository;
 
+@Service
 public class BlogPostServiceImpl implements IBlogPostService {
 
 	@Autowired

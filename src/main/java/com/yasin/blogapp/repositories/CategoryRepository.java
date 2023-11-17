@@ -7,5 +7,4 @@ import com.yasin.blogapp.entity.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    // Additional custom query methods (if needed) can be defined here
 }

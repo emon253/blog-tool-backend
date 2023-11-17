@@ -5,11 +5,12 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.yasin.blogapp.dtos.ApiResponse;
+import com.yasin.blogapp.payloads.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,12 +34,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleMethodArgsNotValidException(
             MethodArgumentNotValidException exception) {
+    	
         Map<String, String> map = new HashMap<>();
         exception.getAllErrors().forEach((err) -> {
-            String field = err.getObjectName();
+            String fieldName = ((FieldError) err).getField();
             String message = err.getDefaultMessage();
-            map.put(field, message);
+            map.put(fieldName, message);
         });
+        
+    
+
         return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
     }
 }

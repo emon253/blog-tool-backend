@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.yasin.blogapp.entity.Comment;
 import com.yasin.blogapp.services.ICommentService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -35,13 +37,13 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+    public ResponseEntity<Comment> createComment(@Valid @RequestBody Comment comment) {
         Comment createdComment = commentService.createComment(comment);
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Comment> updateComment(@RequestBody Comment comment) {
+    public ResponseEntity<Comment> updateComment(@Valid @RequestBody Comment comment) {
         Comment updatedComment = commentService.updateComment(comment);
         return updatedComment != null ? new ResponseEntity<>(updatedComment, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);

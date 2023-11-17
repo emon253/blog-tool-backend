@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.yasin.blogapp.entity.Category;
 import com.yasin.blogapp.services.ICategoryService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -35,13 +37,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.createCategory(category);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> updateCategory(@Valid @RequestBody Category category) {
         Category updatedCategory = categoryService.updateCategory(category);
         return updatedCategory != null ? new ResponseEntity<>(updatedCategory, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,5 +55,4 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // Additional endpoints as needed
 }

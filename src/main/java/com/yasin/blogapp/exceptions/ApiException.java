@@ -3,7 +3,12 @@ package com.yasin.blogapp.exceptions;
 
 public class ApiException extends RuntimeException {
 
-    public ApiException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ApiException() {
 
     }
 

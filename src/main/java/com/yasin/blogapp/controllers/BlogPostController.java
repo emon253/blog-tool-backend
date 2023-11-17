@@ -17,6 +17,8 @@ import com.yasin.blogapp.entity.User;
 import com.yasin.blogapp.services.IBlogPostService;
 import com.yasin.blogapp.services.IUserService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,13 +50,13 @@ public class BlogPostController {
     }
 
     @PostMapping
-    public ResponseEntity<BlogPost> createBlogPost(@RequestBody BlogPost blogPost) {
+    public ResponseEntity<BlogPost> createBlogPost(@Valid @RequestBody BlogPost blogPost) {
         BlogPost createdBlogPost = blogPostService.createBlogPost(blogPost);
         return new ResponseEntity<>(createdBlogPost, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BlogPost> updateBlogPost(@PathVariable Long id, @RequestBody BlogPost blogPost) {
+    public ResponseEntity<BlogPost> updateBlogPost(@Valid @RequestBody BlogPost blogPost) {
         BlogPost updatedBlogPost = blogPostService.updateBlogPost(blogPost);
         return updatedBlogPost != null ? new ResponseEntity<>(updatedBlogPost, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -66,6 +68,5 @@ public class BlogPostController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // Additional endpoints as needed
 }
 

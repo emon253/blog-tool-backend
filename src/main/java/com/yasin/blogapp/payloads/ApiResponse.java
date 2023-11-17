@@ -1,4 +1,4 @@
-package com.yasin.blogapp.dtos;
+package com.yasin.blogapp.payloads;
 
 import lombok.Data;
 
